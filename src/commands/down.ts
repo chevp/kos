@@ -1,6 +1,6 @@
 import type { Command } from 'commander';
 import pc from 'picocolors';
-import { resolveWorkspaceRoot } from '../lib/workspace.js';
+import { resolveWorkspaceRoot, kosServicesComposeFile, KOS_SERVICES_COMPOSE_PROJECT } from '../lib/workspace.js';
 import { commandExists, run, killPid, isPidAlive } from '../lib/proc.js';
 import { loadPid, clearPid } from '../lib/runstate.js';
 
@@ -13,8 +13,12 @@ async function downServices(root: string): Promise<void> {
     process.exitCode = 1;
     return;
   }
-  console.log(pc.cyan('▶') + ' kos-services stack (docker compose)…');
-  const code = await run('docker', ['compose', 'down'], { cwd: root });
+  console.log(pc.cyan('▶') + ' kos-services (docker compose)…');
+  const code = await run(
+    'docker',
+    ['compose', '-p', KOS_SERVICES_COMPOSE_PROJECT, '-f', kosServicesComposeFile(root), 'down'],
+    { cwd: root },
+  );
   if (code !== 0) {
     console.error(pc.red('✗') + ' docker compose down failed.');
     process.exitCode = 1;

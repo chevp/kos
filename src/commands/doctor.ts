@@ -21,6 +21,7 @@ export function registerDoctor(program: Command): void {
         check('pnpm', commandExists('pnpm'), 'npm install -g pnpm'),
         check('firebase (firebase-tools)', commandExists('firebase'), 'npm install -g firebase-tools'),
         check('gcloud', commandExists('gcloud'), 'install the Google Cloud SDK'),
+        check('bash', commandExists('bash'), 'install Git for Windows (Git Bash) — needed to run scripts/gcp/*.sh'),
       ];
 
       if (results.every(Boolean)) {

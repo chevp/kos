@@ -32,3 +32,12 @@ export function resolveWorkspaceRoot(): string {
 export function frostHubDir(root = resolveWorkspaceRoot()): string {
   return join(root, 'apps', 'frost-hub');
 }
+
+/** kos-services' own compose file — deliberately NOT the root docker-compose.yml, which
+ *  also brings up unrelated services (redis, nuna-*, koshub, prefab-registry, game-admin-console). */
+export function kosServicesComposeFile(root = resolveWorkspaceRoot()): string {
+  return join(root, 'services', 'kos-services', 'docker-compose.yml');
+}
+
+/** Compose project name, so this stays isolated from the root `kosmos` compose project. */
+export const KOS_SERVICES_COMPOSE_PROJECT = 'kos-services';

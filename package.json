@@ -1,7 +1,7 @@
 {
   "name": "@kosmos/kos",
   "version": "0.1.0",
-  "description": "Kosmos CLI — local client for kos-services and koshub",
+  "description": "Kosmos CLI — local client and dev-stack orchestrator for kos-services, frost-hub, GCP Cloud Run and Firebase Hosting",
   "type": "module",
   "bin": {
     "kos": "./bin/kos"
