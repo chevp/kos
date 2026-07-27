@@ -7,6 +7,10 @@ import { registerStatus } from './commands/status.js';
 import { registerServices } from './commands/services.js';
 import { registerLogs } from './commands/logs.js';
 import { registerDeploy } from './commands/deploy.js';
+import { registerUp } from './commands/up.js';
+import { registerDown } from './commands/down.js';
+import { registerDoctor } from './commands/doctor.js';
+import { registerCloud } from './commands/cloud.js';
 
 async function main(): Promise<void> {
   const program = new Command();
@@ -21,6 +25,10 @@ async function main(): Promise<void> {
   registerServices(program);
   registerLogs(program);
   registerDeploy(program);
+  registerUp(program);
+  registerDown(program);
+  registerDoctor(program);
+  registerCloud(program);
 
   await program.parseAsync(process.argv);
 }
